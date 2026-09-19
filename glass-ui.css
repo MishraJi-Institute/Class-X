@@ -1,0 +1,46 @@
+/* GURUKUL STUDY PORTAL — GLASS UI + SMOOTH MOTION LAYER */
+:root{
+  --glass-bg:rgba(255,255,255,.48);--glass-strong:rgba(255,253,249,.72);
+  --glass-line:rgba(255,255,255,.62);--glass-shadow:0 18px 55px rgba(23,43,69,.10);
+  --glass-blur:22px;--ease:cubic-bezier(.22,1,.36,1);
+}
+body{overflow-x:hidden}
+body:after{content:"";position:fixed;inset:-20%;pointer-events:none;z-index:-2;background:radial-gradient(circle at 20% 20%,rgba(233,108,45,.09),transparent 24%),radial-gradient(circle at 78% 65%,rgba(35,116,160,.08),transparent 25%);animation:ambientDrift 18s ease-in-out infinite alternate}
+@keyframes ambientDrift{from{transform:translate3d(-1%,0,0) scale(1)}to{transform:translate3d(1%,1%,0) scale(1.035)}}
+.topbar,.nav a,.card,.person,.emblem,.login-card,.footer,.primary,.secondary,.subject-card,.study-strip,.guide-card{
+  background:var(--glass-bg)!important;border-color:var(--glass-line)!important;backdrop-filter:blur(var(--glass-blur)) saturate(135%);-webkit-backdrop-filter:blur(var(--glass-blur)) saturate(135%);box-shadow:var(--glass-shadow)
+}
+.topbar{transition:height .45s var(--ease),padding .45s var(--ease),background .45s var(--ease);}
+.topbar.scrolled{height:62px;background:rgba(247,242,233,.68)!important}
+.nav a,.primary,.secondary{transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .35s var(--ease)}
+.nav a:hover,.secondary:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(23,43,69,.12)}
+.primary:hover{transform:translateY(-4px) scale(1.015);box-shadow:0 16px 35px rgba(23,43,69,.22)}
+.card,.person,.subject-card,.guide-card{transition:transform .55s var(--ease),box-shadow .55s var(--ease),border-color .55s var(--ease)}
+.card:hover,.person:hover,.subject-card:hover,.guide-card:hover{transform:translateY(-8px);box-shadow:0 25px 65px rgba(23,43,69,.14);border-color:rgba(233,108,45,.25)!important}
+.emblem{transition:transform .8s var(--ease),box-shadow .8s var(--ease)}
+.emblem:hover{transform:translateY(-7px);box-shadow:0 35px 80px rgba(23,43,69,.15)}
+.brand img{filter:drop-shadow(0 6px 10px rgba(23,43,69,.12));transition:transform .5s var(--ease)}
+.brand:hover img{transform:rotate(-3deg) scale(1.06)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.is-visible{opacity:1;transform:none}
+.reveal-left{opacity:0;transform:translateX(-28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal-left.is-visible{opacity:1;transform:none}
+.reveal-right{opacity:0;transform:translateX(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal-right.is-visible{opacity:1;transform:none}
+.subject-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:28px}
+.subject-card{position:relative;min-height:175px;padding:24px;border:1px solid var(--glass-line);border-radius:24px;overflow:hidden;cursor:pointer}
+.subject-card:before{content:"";position:absolute;width:150px;height:150px;border-radius:50%;right:-65px;top:-65px;background:rgba(233,108,45,.10);transition:transform .7s var(--ease)}
+.subject-card:hover:before{transform:scale(1.4)}
+.subject-card .icon{font-size:28px;margin-bottom:15px}.subject-card h3{margin:0 0 8px;font-size:22px}.subject-card p{margin:0;color:var(--muted);line-height:1.45;font-size:15px}.subject-card.active{border-color:rgba(233,108,45,.38)!important;background:rgba(255,253,249,.68)!important}.subject-card .status{display:inline-block;margin-top:15px;padding:5px 10px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:rgba(233,108,45,.10);color:var(--accent)}
+.study-strip,.guide-card{border:1px solid var(--glass-line);border-radius:26px;padding:24px;margin-top:28px}.study-strip{display:flex;align-items:center;justify-content:space-between;gap:20px}.study-strip strong{font-size:21px}.study-strip span{color:var(--muted)}
+#password-modal{transition:opacity .3s ease}.login-card{animation:modalIn .55s var(--ease)}
+@keyframes modalIn{from{opacity:0;transform:translateY(20px) scale(.96)}to{opacity:1;transform:none}}
+.login-btn{transition:transform .3s var(--ease),box-shadow .3s var(--ease)}.login-btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(23,43,69,.18)}
+/* Presentation: turn existing slide bars/cards into subtle iOS-like glass holders without changing the lesson content. */
+.presentation-glass .top{background:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.55);border-radius:18px;padding:0 14px;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 10px 28px rgba(23,43,69,.06)}
+.presentation-glass .panel,.presentation-glass .info,.presentation-glass .callout,.presentation-glass .visual-card,.presentation-glass .example,.presentation-glass .box,.presentation-glass .card{backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+#lock-again{backdrop-filter:blur(18px)!important;-webkit-backdrop-filter:blur(18px);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+#lock-again:hover{transform:translateY(-2px) scale(1.02)!important;box-shadow:0 14px 32px rgba(23,43,69,.16)!important}
+@media(max-width:900px){.subject-grid{grid-template-columns:repeat(2,1fr)}.study-strip{align-items:flex-start;flex-direction:column}}
+@media(max-width:560px){.subject-grid{grid-template-columns:1fr}.topbar{padding:0 4vw}.brand small{display:none}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.reveal,.reveal-left,.reveal-right{opacity:1;transform:none}}
